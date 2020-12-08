@@ -1,1 +1,0 @@
-export const calculateLiquidBasedTotal = (litres: number, costPerLitre: number): number => costPerLitre * litres;
