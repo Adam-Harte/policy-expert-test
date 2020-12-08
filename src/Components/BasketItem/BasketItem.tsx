@@ -27,7 +27,7 @@ export const BasketItem: React.FC<BasketItemProps> = ({ item }) => {
       <img src={item.img} alt={item.name} />
       <button
         type="button"
-        disabled={item.quantity <= 1 || item.litres <= 0.175}
+        disabled={item.quantity <= 1 && item.litres <= 0.175}
         onClick={() => decrease(item)}> - </button>
       <span>{item.quantity}</span>
       <button type="button" onClick={() => increase(item)}> + </button>
