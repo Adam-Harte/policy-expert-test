@@ -4,6 +4,8 @@ export type Product = {
   price: number;
   img: string;
   isLiquidBased: boolean;
+  discountAmount: number;
+  discountQuantity: number;
 };
 
 interface ProductsData {
@@ -18,6 +20,8 @@ export const productsData: ProductsData = {
       price: 2.50,
       img: 'https://www.maxpack.co.uk/wp-content/uploads/2020/04/Z7349.jpg',
       isLiquidBased: false,
+      discountAmount: 1.00,
+      discountQuantity: 4,
     },
     {
       id: 2,
@@ -25,6 +29,8 @@ export const productsData: ProductsData = {
       price: 0.65,
       img: 'https://media.nisbets.com/asset/core/prodimage/largezoom/gd751_jantex-std.jpg',
       isLiquidBased: false,
+      discountAmount: 0.65,
+      discountQuantity: 6,
     },
     {
       id: 3,
@@ -32,6 +38,8 @@ export const productsData: ProductsData = {
       price: 19.99,
       img: 'https://www.dorset-nursing.co.uk/images/detailed/2/purell-advanced-hygienic-hand-rub-300ml-1x12.jpg',
       isLiquidBased: true,
+      discountAmount: 0,
+      discountQuantity: 0,
     },
   ]
 };
