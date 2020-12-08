@@ -1,0 +1,1 @@
+export const calculateTotal = (subTotal: number, totalSavings: number): number => subTotal - totalSavings;
