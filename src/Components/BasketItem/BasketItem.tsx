@@ -29,7 +29,7 @@ export const BasketItem: React.FC<BasketItemProps> = ({ item }) => {
         type="button"
         disabled={item.quantity <= 1 && item.litres <= 0.175}
         onClick={() => decrease(item)}> - </button>
-      <span>Qty: {item.quantity}</span>
+      <span>Qty: {item.isLiquidBased ? item.litres : item.quantity}</span>
       <button type="button" onClick={() => increase(item)}> + </button>
       <button type="button" onClick={() => removeProduct(item)}>remove</button>
     </React.Fragment>
