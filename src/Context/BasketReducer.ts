@@ -32,7 +32,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           basket: [...state.basket],
           subTotal: calculateSubTotal(state.basket),
           totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(state.subTotal, state.totalSavings),
+          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
       };
     case "REMOVE_PRODUCT":
       return {
@@ -40,7 +40,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           basket: state.basket.filter(item => item.id !== action.payload.id),
           subTotal: calculateSubTotal(state.basket),
           totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(state.subTotal, state.totalSavings),
+          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
       };
     case "INCREASE":
       const basketItemToIncrease = state.basket.findIndex(item => item.id === action.payload.id);
@@ -56,7 +56,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           basket: [...state.basket],
           subTotal: calculateSubTotal(state.basket),
           totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(state.subTotal, state.totalSavings),
+          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
       };
     case "DECREASE":
       const basketItemToDecrease = state.basket.findIndex(item => item.id === action.payload.id);
@@ -72,7 +72,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           basket: [...state.basket],
           subTotal: calculateSubTotal(state.basket),
           totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(state.subTotal, state.totalSavings),
+          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
       };
     case "CLEAR_BASKET":
       return {
