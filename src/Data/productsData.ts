@@ -6,6 +6,7 @@ export type Product = {
   isLiquidBased: boolean;
   discountAmount: number;
   discountQuantity: number;
+  discountRule?: string;
 };
 
 interface ProductsData {
@@ -22,6 +23,7 @@ export const productsData: ProductsData = {
       isLiquidBased: false,
       discountAmount: 1.00,
       discountQuantity: 2,
+      discountRule: 'Face Masks 2 for £4',
     },
     {
       id: 2,
@@ -31,6 +33,7 @@ export const productsData: ProductsData = {
       isLiquidBased: false,
       discountAmount: 0.65,
       discountQuantity: 6,
+      discountRule: 'Toilet Paper 6 for 5',
     },
     {
       id: 3,

@@ -11,6 +11,7 @@ export type Item = {
   litres: number;
   discountAmount: number;
   discountQuantity: number;
+  discountRule?: string;
 };
 
 interface BasketItemProps {
