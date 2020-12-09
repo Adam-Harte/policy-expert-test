@@ -21,7 +21,7 @@ export const productsData: ProductsData = {
       img: 'https://www.maxpack.co.uk/wp-content/uploads/2020/04/Z7349.jpg',
       isLiquidBased: false,
       discountAmount: 1.00,
-      discountQuantity: 4,
+      discountQuantity: 2,
     },
     {
       id: 2,
