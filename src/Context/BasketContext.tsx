@@ -11,6 +11,9 @@ interface BasketContextProps {
   decrease: (payload: Product) => void;
   clearBasket: (payload: Product) => void;
   basket: Item[];
+  subTotal: number;
+  totalSavings: number;
+  total: number;
 }
 
 export const BasketContext = React.createContext<BasketContextProps>({
@@ -20,9 +23,17 @@ export const BasketContext = React.createContext<BasketContextProps>({
   decrease: (payload: Product) => {},
   clearBasket: (payload: Product) => {},
   basket: [],
+  subTotal: 0,
+  totalSavings: 0,
+  total: 0,
 });
 
-const initialState = { basket: [] };
+const initialState = {
+  basket: [],
+  subTotal: 0,
+  totalSavings: 0,
+  total: 0,
+};
 
 export const BasketContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(BasketReducer, initialState);
