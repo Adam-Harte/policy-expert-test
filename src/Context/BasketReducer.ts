@@ -19,61 +19,75 @@ interface Action {
 export const BasketReducer = (state: BasketState, action: Action) => {
   switch (action.type) {
     case "ADD_PRODUCT":
-      if (!state.basket.find(item => item.id === action.payload.id)) {
-          state.basket.push({
-              ...action.payload,
-              quantity: !action.payload.isLiquidBased ? 1: 0,
-              litres: action.payload.isLiquidBased ? 0.175 : 0,
-          });
+      let addProductBasket = [...state.basket];
+
+      if (!state.basket.find((item) => item.id === action.payload.id)) {
+        addProductBasket = addProductBasket.concat([{
+            ...action.payload,
+            quantity: !action.payload.isLiquidBased ? 1: 0,
+            litres: action.payload.isLiquidBased ? 0.175 : 0,
+        }]);
       }
 
       return {
           ...state,
-          basket: [...state.basket],
-          subTotal: calculateSubTotal(state.basket),
-          totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
+          basket: addProductBasket,
+          subTotal: calculateSubTotal(addProductBasket),
+          totalSavings: calculateTotalSavings(addProductBasket),
+          total: calculateTotal(calculateSubTotal(addProductBasket), calculateTotalSavings(addProductBasket)),
       };
     case "REMOVE_PRODUCT":
-      const updatedBasket = state.basket.filter(item => item.id !== action.payload.id);
+      const removeProductBasket = state.basket.filter((item) => item.id !== action.payload.id);
       return {
           ...state,
-          basket: updatedBasket,
-          subTotal: calculateSubTotal(updatedBasket),
-          totalSavings: calculateTotalSavings(updatedBasket),
-          total: calculateTotal(calculateSubTotal(updatedBasket), calculateTotalSavings(updatedBasket)),
+          basket: removeProductBasket,
+          subTotal: calculateSubTotal(removeProductBasket),
+          totalSavings: calculateTotalSavings(removeProductBasket),
+          total: calculateTotal(calculateSubTotal(removeProductBasket), calculateTotalSavings(removeProductBasket)),
       };
     case "INCREASE":
-      const basketItemToIncrease = state.basket.findIndex(item => item.id === action.payload.id);
+      const basketItemToIncrease = state.basket.findIndex((item) => item.id === action.payload.id);
 
-      if (state.basket[basketItemToIncrease].hasOwnProperty('quantity')) {
-        state.basket[basketItemToIncrease].quantity ++;
-      } else if (state.basket[basketItemToIncrease].hasOwnProperty('litres')) {
-        state.basket[basketItemToIncrease].litres! += 0.175;
+      const increasedBasketItem = {
+        ...state.basket[basketItemToIncrease],
+        ...(!state.basket[basketItemToIncrease].isLiquidBased && { quantity: state.basket[basketItemToIncrease].quantity + 1 }),
+        ...(state.basket[basketItemToIncrease].isLiquidBased && { litres: state.basket[basketItemToIncrease].litres + 0.175 }),
       }
+
+      const newBasketIncrease = [
+        ...state.basket.slice(0, basketItemToIncrease),
+        increasedBasketItem,
+        ...state.basket.slice(basketItemToIncrease + 1),
+      ];
 
       return {
           ...state,
-          basket: [...state.basket],
-          subTotal: calculateSubTotal(state.basket),
-          totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
+          basket: newBasketIncrease,
+          subTotal: calculateSubTotal(newBasketIncrease),
+          totalSavings: calculateTotalSavings(newBasketIncrease),
+          total: calculateTotal(calculateSubTotal(newBasketIncrease), calculateTotalSavings(newBasketIncrease)),
       };
     case "DECREASE":
-      const basketItemToDecrease = state.basket.findIndex(item => item.id === action.payload.id);
+      const basketItemToDecrease = state.basket.findIndex((item) => item.id === action.payload.id);
 
-      if (state.basket[basketItemToDecrease].hasOwnProperty('quantity')) {
-        state.basket[basketItemToDecrease].quantity! --;
-      } else if (state.basket[basketItemToDecrease].hasOwnProperty('litres')) {
-        state.basket[basketItemToDecrease].litres! -= 0.175;
+      const decreasedBasketItem = {
+        ...state.basket[basketItemToDecrease],
+        ...(!state.basket[basketItemToDecrease].isLiquidBased && { quantity: state.basket[basketItemToDecrease].quantity - 1 }),
+        ...(state.basket[basketItemToDecrease].isLiquidBased && { litres: state.basket[basketItemToDecrease].litres - 0.175 }),
       }
+
+      const newBasketDecrease = [
+        ...state.basket.slice(0, basketItemToDecrease),
+        decreasedBasketItem,
+        ...state.basket.slice(basketItemToDecrease + 1),
+      ];
 
       return {
           ...state,
-          basket: [...state.basket],
-          subTotal: calculateSubTotal(state.basket),
-          totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
+          basket: newBasketDecrease,
+          subTotal: calculateSubTotal(newBasketDecrease),
+          totalSavings: calculateTotalSavings(newBasketDecrease),
+          total: calculateTotal(calculateSubTotal(newBasketDecrease), calculateTotalSavings(newBasketDecrease)),
       };
     case "CLEAR_BASKET":
       return {
