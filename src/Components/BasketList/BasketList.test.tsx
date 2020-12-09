@@ -31,8 +31,8 @@ describe("render", () => {
 
     expect(basketItems).toMatchInlineSnapshot(`
       Array [
-        "dummy5 - 2 + remove",
-        "dumm28.2 - 0.35 + remove",
+        "dummy5 - Qty: 2 + remove",
+        "dumm28.2 - Qty: 0.35 + remove",
       ]
     `);
   });
