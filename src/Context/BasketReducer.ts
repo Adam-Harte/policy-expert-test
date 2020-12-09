@@ -35,12 +35,13 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
       };
     case "REMOVE_PRODUCT":
+      const updatedBasket = state.basket.filter(item => item.id !== action.payload.id);
       return {
           ...state,
-          basket: state.basket.filter(item => item.id !== action.payload.id),
-          subTotal: calculateSubTotal(state.basket),
-          totalSavings: calculateTotalSavings(state.basket),
-          total: calculateTotal(calculateSubTotal(state.basket), calculateTotalSavings(state.basket)),
+          basket: updatedBasket,
+          subTotal: calculateSubTotal(updatedBasket),
+          totalSavings: calculateTotalSavings(updatedBasket),
+          total: calculateTotal(calculateSubTotal(updatedBasket), calculateTotalSavings(updatedBasket)),
       };
     case "INCREASE":
       const basketItemToIncrease = state.basket.findIndex(item => item.id === action.payload.id);
