@@ -1,0 +1,13 @@
+.header {
+	padding: 5px;
+	border-bottom: 2px solid black;
+}
+
+.header__nav {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.header__nav__item {
+	padding: 5px;
+}
