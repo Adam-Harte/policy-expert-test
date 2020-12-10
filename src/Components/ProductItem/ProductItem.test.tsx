@@ -9,6 +9,8 @@ const dummyProduct = {
   price: 5,
   img: 'dummy.png',
   isLiquidBased: false,
+  discountAmount: 1.50,
+  discountQuantity: 4,
 }
 
 describe('render', () => {
@@ -21,7 +23,7 @@ describe('render', () => {
   it('renders the product price', () => {
     render(<ProductItem product={dummyProduct} />);
 
-    expect(screen.getByText(/5/).textContent).toBe('5');
+    expect(screen.getByText(/5/).textContent).toBe('£5');
   });
 
   it('renders an img with the src set to product img', () => {

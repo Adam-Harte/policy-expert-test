@@ -10,6 +10,9 @@ const dummyItem = {
   img: 'dummy.png',
   isLiquidBased: false,
   quantity: 2,
+  litres: 0,
+  discountAmount: 0.5,
+  discountQuantity: 3,
 }
 
 describe('render', () => {
@@ -22,7 +25,7 @@ describe('render', () => {
   it('renders the product price', () => {
     render(<BasketItem item={dummyItem} />);
 
-    expect(screen.getByText(/5/).textContent).toBe('5');
+    expect(screen.getByText(/5/).textContent).toBe('£5');
   });
 
   it('renders an img with the src set to product img', () => {
@@ -40,12 +43,12 @@ describe('render', () => {
   it('renders a button for increasing the quantity', () => {
     render(<BasketItem item={dummyItem} />);
 
-    expect(screen.getByText(('+')).textContent).toBe(' + ');
+    expect(screen.getByText(('+')).textContent).toBe('+');
   });
 
   it('renders a button for decreasing the quantity', () => {
     render(<BasketItem item={dummyItem} />);
 
-    expect(screen.getByText('-').textContent).toBe(' - ');
+    expect(screen.getByText('-').textContent).toBe('-');
   })
 });

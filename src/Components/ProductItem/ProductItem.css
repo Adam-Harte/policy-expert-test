@@ -1,0 +1,22 @@
+.product-item__name {
+	font-size: 16px;
+}
+
+.product-item__price {
+	display: block;
+	font-size: 12px;
+}
+
+.product-item__image {
+	width: 60px;
+	height: 60px;
+}
+
+.product-item__add-product-button {
+	padding: 10px;
+	background-color: green;
+	color: white;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}

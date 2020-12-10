@@ -1,0 +1,41 @@
+.basket-item__name {
+	font-size: 16px;
+}
+
+.basket-item__price {
+	display: block;
+	font-size: 12px;
+}
+
+.basket-item__image {
+	display: block;
+	width: 60px;
+	height: 60px;
+}
+
+.basket-item__increase-button {
+	padding: 5px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.basket-item__decrease-button {
+	padding: 5px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.basket-item__quantity {
+	font-size: 12px;
+}
+
+.basket-item__remove-button {
+	padding: 10px;
+	margin-left: 10px;
+	background-color: red;
+	color: black;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+}

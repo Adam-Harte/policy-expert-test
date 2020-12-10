@@ -2,6 +2,8 @@
 
 import { BasketItem, Item } from '../BasketItem/BasketItem';
 
+import './BasketList.css';
+
 interface BasketListProps {
   basketItems: Item[];
 };
@@ -9,7 +11,7 @@ interface BasketListProps {
 export const BasketList: React.FC<BasketListProps> = ({ basketItems }) => {
 
   return (
-    <ul>
+    <ul className="basket-list__list">
       { basketItems.map((item) => (
         <li key={item.id} data-testid="basket-items">
           <BasketItem item={item} />

@@ -29,8 +29,8 @@ describe("render", () => {
 
     expect(productItems).toMatchInlineSnapshot(`
       Array [
-        "dummy5Add to basket",
-        "dumm28.2Add to basket",
+        "dummy£5Add to basket",
+        "dumm2£8.2Add to basket",
       ]
     `);
   });

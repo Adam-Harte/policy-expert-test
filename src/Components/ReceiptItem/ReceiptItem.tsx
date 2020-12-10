@@ -1,5 +1,8 @@
 import React from 'react';
+
 import { calculateProductPriceTotal } from '../../Utils/calculateProductPriceTotal';
+
+import './ReceiptItem.css'
 
 interface ReceptItemProps {
   isLiquidBased?: boolean;
@@ -16,11 +19,11 @@ export const ReceiptItem: React.FC<ReceptItemProps> = ({
   litres = 0,
   price,
 }) => (
-  <div>
+  <div className="receipt-item__item">
     <div>
       <span>{name}</span>
       {isLiquidBased && (
-        <span>{litres} l @ £{price}/l</span>
+        <span className="receipt-item__liquid-based">{litres} l @ £{price}/l</span>
       )}
     </div>
     <div>

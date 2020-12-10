@@ -3,6 +3,8 @@ import React from 'react';
 import { Product } from '../../Data/productsData';
 import { ProductItem } from '../ProductItem/ProductItem';
 
+import './ProductList.css'
+
 interface ProductListProps {
   products: Product[];
 };
@@ -10,9 +12,13 @@ interface ProductListProps {
 export const ProductList: React.FC<ProductListProps> = ({
   products,
 }) => (
-  <ul>
+  <ul className="product-list__list">
     { products.map((product) => (
-      <li key={product.id} data-testid="product-items">
+      <li
+        className="product-list__item"
+        key={product.id}
+        data-testid="product-items"
+      >
         <ProductItem product={product} />
       </li>
     ))}

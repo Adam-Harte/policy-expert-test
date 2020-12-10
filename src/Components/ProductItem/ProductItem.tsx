@@ -3,6 +3,8 @@ import { BasketContext } from '../../Context/BasketContext';
 
 import { Product } from '../../Data/productsData';
 
+import './ProductItem.css';
+
 interface ProductItemProps {
   product: Product,
 };
@@ -18,10 +20,15 @@ export const ProductItem: React.FC<ProductItemProps> = ({
 
   return (
     <React.Fragment>
-      <h4>{product.name}</h4>
-      <span>{product.price}</span>
-      <img src={product.img} alt={product.name} />
-      <button type="button" onClick={handleClick}>Add to basket</button>
+      <h4 className="product-item__name">{product.name}</h4>
+      <span className="product-item__price">£{product.price}</span>
+      <img className="product-item__image" src={product.img} alt={product.name} />
+      <button
+        className="product-item__add-product-button"
+        type="button"
+        onClick={handleClick}>
+          Add to basket
+        </button>
     </React.Fragment>
   );
 };
