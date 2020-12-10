@@ -1,0 +1,4 @@
+.receipt-savings-item__item {
+	display: flex;
+	justify-content: space-between;
+}

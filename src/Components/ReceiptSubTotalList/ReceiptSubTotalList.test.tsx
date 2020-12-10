@@ -37,13 +37,14 @@ describe("render", () => {
 
     expect(subTotalItems).toMatchInlineSnapshot(`
       Array [
-        "dummy5dumm20.35 l @ £8.2/l2.8699999999999997",
+        "dummy5",
+        "dumm20.35 l @ £8.2/l2.8699999999999997",
       ]
     `);
   });
 
-  it('renders the sub total receipt item', () => {
+  it("renders the sub total receipt item", () => {
     render(<ReceiptSubTotalList items={dummyItems} />);
-    expect(screen.getByText(/Sub-total/).textContent).toBe('Sub-total');
+    expect(screen.getByText(/Sub-total/).textContent).toBe("Sub-total");
   });
 });

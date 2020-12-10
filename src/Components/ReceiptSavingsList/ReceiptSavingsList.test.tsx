@@ -39,20 +39,22 @@ describe("render", () => {
 
     expect(receiptSavingsItems).toMatchInlineSnapshot(`
       Array [
-        " 2 for 8  -£2  3l for £23.60  -£0 ",
+        " 2 for 8  -2 ",
       ]
     `);
   });
 
-  it('renders the savings label', () => {
+  it("renders the savings label", () => {
     render(<ReceiptSavingsList items={dummyItems} />);
 
-    expect(screen.getByText(/Savings/).textContent).toBe('Savings');
+    expect(screen.getByText(/Savings/).textContent).toBe("Savings");
   });
 
-  it('renders the total savings item', () => {
+  it("renders the total savings item", () => {
     render(<ReceiptSavingsList items={dummyItems} />);
 
-    expect(screen.getByText(/Total savings/).textContent).toBe(' Total savings ');
+    expect(screen.getByText(/Total savings/).textContent).toBe(
+      " Total savings "
+    );
   });
 });

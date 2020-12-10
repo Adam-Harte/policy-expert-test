@@ -8,5 +8,5 @@ it('renders the label', () => {
 
 it('renders the discount text', () => {
   render(<ReceiptSavingsItem label="foo" discount={2} />);
-  expect(screen.getByText(/£2/).textContent).toBe(' -£2 ');
+  expect(screen.getByText(/2/).textContent).toBe(' -2 ');
 });
