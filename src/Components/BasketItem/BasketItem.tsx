@@ -1,21 +1,9 @@
 import React, { useContext } from 'react';
 
 import { BasketContext } from '../../Context/BasketContext';
+import { Item } from '../../Types/item';
 
 import './BasketItem.css';
-
-export type Item = {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  isLiquidBased: boolean;
-  quantity: number;
-  litres: number;
-  discountAmount: number;
-  discountQuantity: number;
-  discountRule?: string;
-};
 
 interface BasketItemProps {
   item: Item;

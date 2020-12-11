@@ -1,13 +1,4 @@
-export type Product = {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  isLiquidBased: boolean;
-  discountAmount: number;
-  discountQuantity: number;
-  discountRule?: string;
-};
+import { Product } from "../Types/product";
 
 interface ProductsData {
   products: Product[];

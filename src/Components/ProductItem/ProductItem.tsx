@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { BasketContext } from '../../Context/BasketContext';
 
-import { Product } from '../../Data/productsData';
+import { Product } from '../../Types/product';
 
 import './ProductItem.css';
 

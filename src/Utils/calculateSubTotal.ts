@@ -1,4 +1,4 @@
-import { Item } from "../Components/BasketItem/BasketItem";
+import { Item } from "../Types/item";
 import { calculateProductPriceTotal } from "./calculateProductPriceTotal";
 import { roundNumberToDecimals } from "./roundNumberToDecimals";
 

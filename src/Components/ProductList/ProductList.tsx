@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Product } from '../../Data/productsData';
+import { Product } from '../../Types/product';
 import { ProductItem } from '../ProductItem/ProductItem';
 
 import './ProductList.css'

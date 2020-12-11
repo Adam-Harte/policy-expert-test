@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { BasketContext } from '../../Context/BasketContext';
 import { calculateQuantityDiscount } from '../../Utils/calculateQuantityDiscount';
-import { Item } from '../BasketItem/BasketItem';
+import { Item } from '../../Types/item';
 import { ReceiptSavingsItem } from '../ReceiptSavingsItem/ReceiptSavingsItem';
 
 import './ReceiptSavingsList.css';

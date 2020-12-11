@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { BasketContext } from '../../Context/BasketContext';
-import { Item } from '../BasketItem/BasketItem';
+import { Item } from '../../Types/item';
 import { ReceiptItem } from '../ReceiptItem/ReceiptItem';
 
 import './ReceiptSubTotalList.css'

@@ -11,6 +11,11 @@ it('renders the litres pricing label if isLiquidBased', () => {
   expect(screen.getByText(/0.35/).textContent).toBe('0.35 l @ £10/l');
 });
 
+it('DOES NOT render the litres pricing label if !isLiquidBased', () => {
+  render(<ReceiptItem name="foo" price={10} litres={0.35} />)
+  expect(screen.queryByText(/0.35/)).not.toBeInTheDocument();
+});
+
 it('renders the item price', () => {
   render(<ReceiptItem name="foo" price={5} />);
   expect(screen.getByText(/5/).textContent).toBe('5');
