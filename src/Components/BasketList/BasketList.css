@@ -1,3 +1,14 @@
 .basket-list__list {
 	list-style-type: none;
 }
+
+.basket-list__clear-button {
+	display: block;
+	padding: 10px;
+	margin: 0 auto;
+	background-color: red;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}

@@ -1,6 +1,8 @@
-  import React from 'react';
+import React, { useContext } from 'react';
 
-import { BasketItem, Item } from '../BasketItem/BasketItem';
+import { BasketContext } from '../../Context/BasketContext';
+import { Item } from '../../Types/item';
+import { BasketItem } from '../BasketItem/BasketItem';
 
 import './BasketList.css';
 
@@ -9,14 +11,24 @@ interface BasketListProps {
 };
 
 export const BasketList: React.FC<BasketListProps> = ({ basketItems }) => {
+  const { clearBasket } = useContext(BasketContext)
 
   return (
-    <ul className="basket-list__list">
-      { basketItems.map((item) => (
-        <li key={item.id} data-testid="basket-items">
-          <BasketItem item={item} />
-        </li>
-      ))}
-    </ul>
+    <React.Fragment>
+      <ul className="basket-list__list">
+        { basketItems.map((item) => (
+          <li key={item.id} data-testid="basket-items">
+            <BasketItem item={item} />
+          </li>
+        ))}
+      </ul>
+      <button
+        className="basket-list__clear-button"
+        type="button"
+        onClick={clearBasket}
+      >
+        Clear basket
+      </button>
+    </React.Fragment>
   )
 }
