@@ -3,6 +3,7 @@ import { Product } from "../Data/productsData";
 import { calculateSubTotal } from "../Utils/calculateSubTotal";
 import { calculateTotal } from "../Utils/calculateTotal";
 import { calculateTotalSavings } from "../Utils/calculateTotalSavings";
+import { roundNumberToDecimals } from "../Utils/roundNumberToDecimals";
 
 interface BasketState {
   basket: Item[];
@@ -51,7 +52,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
       const increasedBasketItem = {
         ...state.basket[basketItemToIncrease],
         ...(!state.basket[basketItemToIncrease].isLiquidBased && { quantity: state.basket[basketItemToIncrease].quantity + 1 }),
-        ...(state.basket[basketItemToIncrease].isLiquidBased && { litres: state.basket[basketItemToIncrease].litres + 0.175 }),
+        ...(state.basket[basketItemToIncrease].isLiquidBased && { litres: roundNumberToDecimals(state.basket[basketItemToIncrease].litres + 0.175, 3) }),
       }
 
       const newBasketIncrease = [
@@ -73,7 +74,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
       const decreasedBasketItem = {
         ...state.basket[basketItemToDecrease],
         ...(!state.basket[basketItemToDecrease].isLiquidBased && { quantity: state.basket[basketItemToDecrease].quantity - 1 }),
-        ...(state.basket[basketItemToDecrease].isLiquidBased && { litres: state.basket[basketItemToDecrease].litres - 0.175 }),
+        ...(state.basket[basketItemToDecrease].isLiquidBased && { litres: roundNumberToDecimals(state.basket[basketItemToDecrease].litres - 0.175, 3) }),
       }
 
       const newBasketDecrease = [

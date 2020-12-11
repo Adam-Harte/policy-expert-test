@@ -38,7 +38,7 @@ describe("render", () => {
     expect(subTotalItems).toMatchInlineSnapshot(`
       Array [
         "dummy5",
-        "dumm20.35 l @ £8.2/l2.8699999999999997",
+        "dumm20.35 l @ £8.2/l2.87",
       ]
     `);
   });

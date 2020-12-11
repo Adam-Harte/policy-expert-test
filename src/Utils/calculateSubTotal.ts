@@ -1,5 +1,6 @@
 import { Item } from "../Components/BasketItem/BasketItem";
 import { calculateProductPriceTotal } from "./calculateProductPriceTotal";
+import { roundNumberToDecimals } from "./roundNumberToDecimals";
 
 export const calculateSubTotal = (basket: Item[]): number => {
   const subTotal = basket.reduce((total, item) => {
@@ -10,5 +11,5 @@ export const calculateSubTotal = (basket: Item[]): number => {
     }
   }, 0);
 
-  return parseFloat(subTotal.toFixed(2));
+  return roundNumberToDecimals(subTotal, 2);
 }

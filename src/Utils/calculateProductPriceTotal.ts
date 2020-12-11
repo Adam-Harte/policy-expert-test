@@ -1,1 +1,3 @@
-export const calculateProductPriceTotal = (quantity: number, price: number): number => price * quantity;
+import { roundNumberToDecimals } from "./roundNumberToDecimals";
+
+export const calculateProductPriceTotal = (quantity: number, price: number): number => roundNumberToDecimals(price * quantity, 2);

@@ -1,0 +1,1 @@
+export const roundNumberToDecimals = (num: number, decimals: number): number => parseFloat(num.toFixed(decimals));
