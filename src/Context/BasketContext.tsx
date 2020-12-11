@@ -4,7 +4,7 @@ import { Item } from '../Components/BasketItem/BasketItem';
 import { Product } from '../Data/productsData';
 import { BasketReducer } from './BasketReducer';
 
-interface BasketContextProps {
+export interface BasketContextProps {
   addProduct: (payload: Product) => void;
   removeProduct: (payload: Product) => void;
   increase: (payload: Product) => void;

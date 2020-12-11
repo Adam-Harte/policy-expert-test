@@ -1,7 +1,36 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { BasketItem } from './BasketItem';
+import { BasketContext, BasketContextProps } from '../../Context/BasketContext';
+
+const renderWithContext = (ui: JSX.Element, providerProps: {
+  value: BasketContextProps
+}) => {
+  return render(
+    <BasketContext.Provider {...providerProps}>{ui}</BasketContext.Provider>,
+  )
+}
+
+const addProductFn = jest.fn();
+const removeProductFn = jest.fn();
+const increaseFn = jest.fn();
+const decreaseFn = jest.fn();
+const clearBasketFn = jest.fn();
+
+const dummyContext = {
+  value: {
+    addProduct: addProductFn,
+    removeProduct: removeProductFn,
+    increase: increaseFn,
+    decrease: decreaseFn,
+    clearBasket: clearBasketFn,
+    basket: [],
+    subTotal: 0,
+    totalSavings: 0,
+    total: 0,
+  }
+}
 
 const dummyItem = {
   id: 1,
@@ -51,4 +80,27 @@ describe('render', () => {
 
     expect(screen.getByText('-').textContent).toBe('-');
   })
+});
+
+describe('context', () => {
+  it('calls the increase context function to call the reducer to update basket state', () => {
+    renderWithContext(<BasketItem item={dummyItem} />, dummyContext);
+    fireEvent.click(screen.getByText('+'));
+    expect(increaseFn).toHaveBeenCalledTimes(1);
+    expect(increaseFn).toHaveBeenCalledWith(dummyItem);
+  });
+
+  it('calls the decrease context function to call the reducer to update basket state', () => {
+    renderWithContext(<BasketItem item={dummyItem} />, dummyContext);
+    fireEvent.click(screen.getByText('-'));
+    expect(decreaseFn).toHaveBeenCalledTimes(1);
+    expect(decreaseFn).toHaveBeenCalledWith(dummyItem);
+  });
+
+  it('calls the removeProduct context function to call the reducer to update basket state', () => {
+    renderWithContext(<BasketItem item={dummyItem} />, dummyContext);
+    fireEvent.click(screen.getByText('remove'));
+    expect(removeProductFn).toHaveBeenCalledTimes(1);
+    expect(removeProductFn).toHaveBeenCalledWith(dummyItem);
+  });
 });

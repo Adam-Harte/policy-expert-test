@@ -1,7 +1,36 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ProductItem } from './ProductItem';
+import { BasketContext, BasketContextProps } from '../../Context/BasketContext';
+
+const renderWithContext = (ui: JSX.Element, providerProps: {
+  value: BasketContextProps
+}) => {
+  return render(
+    <BasketContext.Provider {...providerProps}>{ui}</BasketContext.Provider>,
+  )
+}
+
+const addProductFn = jest.fn();
+const removeProductFn = jest.fn();
+const increaseFn = jest.fn();
+const decreaseFn = jest.fn();
+const clearBasketFn = jest.fn();
+
+const dummyContext = {
+  value: {
+    addProduct: addProductFn,
+    removeProduct: removeProductFn,
+    increase: increaseFn,
+    decrease: decreaseFn,
+    clearBasket: clearBasketFn,
+    basket: [],
+    subTotal: 0,
+    totalSavings: 0,
+    total: 0,
+  }
+}
 
 const dummyProduct = {
   id: 1,
@@ -30,5 +59,14 @@ describe('render', () => {
     render(<ProductItem product={dummyProduct} />);
 
     expect(screen.getByAltText(/dummy/)).toHaveAttribute('src', 'dummy.png');
+  });
+});
+
+describe('context', () => {
+  it('calls the addProduct context function to call the reducer to update basket state', () => {
+    renderWithContext(<ProductItem product={dummyProduct} />, dummyContext);
+    fireEvent.click(screen.getByText('Add to basket'));
+    expect(addProductFn).toHaveBeenCalledTimes(1);
+    expect(addProductFn).toHaveBeenCalledWith(dummyProduct);
   });
 });
