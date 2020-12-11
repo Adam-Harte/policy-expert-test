@@ -1,5 +1,5 @@
-import { Item } from "../Components/BasketItem/BasketItem";
-import { Product } from "../Data/productsData";
+import { Item } from "../Types/item";
+import { ADD_PRODUCT, BasketActionTypes, CLEAR_BASKET, DECREASE, INCREASE, REMOVE_PRODUCT } from "../Types/actions";
 import { calculateSubTotal } from "../Utils/calculateSubTotal";
 import { calculateTotal } from "../Utils/calculateTotal";
 import { calculateTotalSavings } from "../Utils/calculateTotalSavings";
@@ -12,14 +12,9 @@ interface BasketState {
   total: number;
 };
 
-interface Action {
-  type: string;
-  payload: Product;
-}
-
-export const BasketReducer = (state: BasketState, action: Action) => {
+export const BasketReducer = (state: BasketState, action: BasketActionTypes): BasketState => {
   switch (action.type) {
-    case "ADD_PRODUCT":
+    case ADD_PRODUCT:
       let addProductBasket = [...state.basket];
 
       if (!state.basket.find((item) => item.id === action.payload.id)) {
@@ -37,7 +32,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           totalSavings: calculateTotalSavings(addProductBasket),
           total: calculateTotal(calculateSubTotal(addProductBasket), calculateTotalSavings(addProductBasket)),
       };
-    case "REMOVE_PRODUCT":
+    case REMOVE_PRODUCT:
       const removeProductBasket = state.basket.filter((item) => item.id !== action.payload.id);
       return {
           ...state,
@@ -46,7 +41,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           totalSavings: calculateTotalSavings(removeProductBasket),
           total: calculateTotal(calculateSubTotal(removeProductBasket), calculateTotalSavings(removeProductBasket)),
       };
-    case "INCREASE":
+    case INCREASE:
       const basketItemToIncrease = state.basket.findIndex((item) => item.id === action.payload.id);
 
       const increasedBasketItem = {
@@ -68,7 +63,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           totalSavings: calculateTotalSavings(newBasketIncrease),
           total: calculateTotal(calculateSubTotal(newBasketIncrease), calculateTotalSavings(newBasketIncrease)),
       };
-    case "DECREASE":
+    case DECREASE:
       const basketItemToDecrease = state.basket.findIndex((item) => item.id === action.payload.id);
 
       const decreasedBasketItem = {
@@ -90,7 +85,7 @@ export const BasketReducer = (state: BasketState, action: Action) => {
           totalSavings: calculateTotalSavings(newBasketDecrease),
           total: calculateTotal(calculateSubTotal(newBasketDecrease), calculateTotalSavings(newBasketDecrease)),
       };
-    case "CLEAR_BASKET":
+    case CLEAR_BASKET:
       return {
           basket: [],
           subTotal: 0,
