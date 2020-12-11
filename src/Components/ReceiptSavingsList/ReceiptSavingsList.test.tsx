@@ -2,6 +2,35 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { ReceiptSavingsList } from "./ReceiptSavingsList";
+import { BasketContext, BasketContextProps } from "../../Context/BasketContext";
+
+const renderWithContext = (ui: JSX.Element, providerProps: {
+  value: BasketContextProps
+}) => {
+  return render(
+    <BasketContext.Provider {...providerProps}>{ui}</BasketContext.Provider>,
+  )
+}
+
+const addProductFn = jest.fn();
+const removeProductFn = jest.fn();
+const increaseFn = jest.fn();
+const decreaseFn = jest.fn();
+const clearBasketFn = jest.fn();
+
+const dummyContext = {
+  value: {
+    addProduct: addProductFn,
+    removeProduct: removeProductFn,
+    increase: increaseFn,
+    decrease: decreaseFn,
+    clearBasket: clearBasketFn,
+    basket: [],
+    subTotal: 10,
+    totalSavings: 2,
+    total: 8,
+  }
+}
 
 const dummyItems = [
   {
@@ -56,5 +85,14 @@ describe("render", () => {
     expect(screen.getByText(/Total savings/).textContent).toBe(
       " Total savings "
     );
+  });
+});
+
+describe('context', () => {
+  it('renders the total savings with the context value for total savings', () => {
+    renderWithContext(<ReceiptSavingsList items={dummyItems} />, dummyContext);
+
+    expect(screen.getByText('Total savings').textContent).toBe(' Total savings ');
+    expect(screen.getAllByText('-2')[1].textContent).toBe(' -2 ');
   });
 });
